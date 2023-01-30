@@ -23,23 +23,34 @@ def populate():
         {'title': 'Flask', 'url': 'http://flask.pocoo.org', 'views': 32, 'likes':16}
     ]
 
+    browser_pages = [
+        {'title': 'Google', 'url': 'https://www.google.co.uk/', 'views': 7, 'likes':104},
+        {'title': 'DuckDuckGo', 'url': 'https://duckduckgo.com/?va=b&t=hc', 'views': 163, 'likes': 4}
+    ]
+
+    got_page = [
+        {'title': 'Game of Thrones', 'url': 'https://www.hbo.com/game-of-thrones', 'views': 4000, 'likes': 14}
+    ]
+
     cats = {'Python': {'pages': python_pages, 'views':128, 'likes':64}, 'Django': {'pages': django_pages, 'views':64, 'likes':32},
-            'Other Frameworks': {'pages': other_pages, 'views':32, 'likes':16}}
+            'Other Frameworks': {'pages': other_pages, 'views':32, 'likes':16}, 'Browsers': {'pages': browser_pages, 'views': 113, 'likes':41},
+            'Game Of Thrones': {'pages': got_page, 'views': 4000, 'likes': 14}}
 
     for cat, cat_data in cats.items():
         for p in cat_data['pages']:
             c = add_cat(cat, p['views'], p['likes'])
-            add_page(c, p['title'], p['url'])
+            add_page(c, p['title'], p['url'], p['views'], p['likes'])
 
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
             print(f'-{c}: {p}')
 
 
-def add_page(cat, title, url, views=0):
+def add_page(cat, title, url, views=0, likes=0):
     p = Page.objects.get_or_create(category=cat, title=title)[0]
     p.url = url
     p.views = views
+    p.likes = likes
     p.save()
     return p
 
