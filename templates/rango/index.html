@@ -1,18 +1,16 @@
 <!DOCTYPE html>
+
+
+{% extends 'rango/base.html' %}
 {% load static %}
 <html>
-<head>
-<title>Rango</title>
-</head>
-
-<body>
 <h1>Rango Says...</h1>
 <div>
 hey there partner!<br/>
 <strong>{{ boldmessage }}</strong><br/>
 </div>
     
-<div>
+{% block body_block %}
     <h2>Most viewed categories</h2>
     {% if categories %}
         <ul>
@@ -25,9 +23,6 @@ hey there partner!<br/>
     {% else %}
         <strong>There are no categories present.</strong>
     {% endif %}
-    </div>
-
-<div>
     <h2>Most viewed pages</h2>
     {%if pages %}
     <ul>
@@ -40,14 +35,8 @@ hey there partner!<br/>
     {% else %}
         <strong>There are no pages present</strong>
     {% endif %}
-    </div>
-
-
-<div>
-<a href="/rango/about/">About</a><br/>
-<a href="/rango/add_category/">Add a new category</a><br />
+    
 <img src="{% static 'images/rango.jpeg'%}" alt = "picture of rango"/>
-</div>
-</body>
-
+<img src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a Cat."/>
+{% endblock %}
 </html>
