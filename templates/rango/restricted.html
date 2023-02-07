@@ -1,0 +1,19 @@
+<!DOCTYPE hmtl>
+
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+<html>
+    <title>
+    {% block title_block %}
+        Restricted Page
+    {% endblock %}
+    </title>
+    
+    
+    {% block body_block %}
+        <strong>You can see this page because you are signed in</strong>
+    {% endblock %}
+
+
+</html>

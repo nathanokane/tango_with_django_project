@@ -11,6 +11,8 @@ from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+
 def index(request):
     pages_list = Page.objects.order_by('-likes')[:5]
     category_list = Category.objects.order_by('-likes')
@@ -45,6 +47,7 @@ def show_category(request, category_name_slug):
     return render(request, 'rango/category.html', context=context_dict)
 
 
+@login_required
 def add_category(request):
     form = CategoryForm()
 
@@ -152,7 +155,7 @@ def user_login(request):
 
 @login_required
 def restricted(request):
-    return HttpResponse("Since you're logged in, you can see this text")
+    return render(request, 'rango/restricted.html')
 
 
 @login_required
