@@ -8,13 +8,12 @@
 <div>
     {% block body_block %}
     {% if user.is_authenticated %}
-        Howdy {{ user.username }}!
+       <h1>Howdy {{ user.username }}!</h1> 
     {% else %}
         hey there partner!
     {% endif %}
     <br/>
     <strong>{{ boldmessage }}</strong><br/>
-    <p>Visits: {{ visits }}</p>
 </div>
     
 
