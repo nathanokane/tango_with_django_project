@@ -6,16 +6,18 @@
 <html>
 <h1>Rango Says...</h1>
 <div>
-{% if user.is_authenticated %}
-    howdy {{ user.username }}!
-{% else %}
-    hey there partner!
-{% endif %}
-<br/>
-<strong>{{ boldmessage }}</strong><br/>
+    {% block body_block %}
+    {% if user.is_authenticated %}
+        Howdy {{ user.username }}!
+    {% else %}
+        hey there partner!
+    {% endif %}
+    <br/>
+    <strong>{{ boldmessage }}</strong><br/>
+    <p>Visits: {{ visits }}</p>
 </div>
     
-{% block body_block %}
+
     <h2>Most viewed categories</h2>
     {% if categories %}
         <ul>
